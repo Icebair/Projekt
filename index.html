@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Formulare und Formularelemente gestalten mit CSS</title>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script type="application/javascript">
+
+$( document ).ready(function() {
+	$( "#tabs" ).tabs();
+	$("#b_submitRefresh").click(function(){
+		alert($('#filmnickname').val()+""+$('#filmart').val()+""+$('#filmname').val());
+		var formData = "operation=addfilm&nickname="+$('#filmnickname').val()+"&art="+$('#filmart').val()+"&name="+$('#filmname').val();
+		$.ajax({	
+    		url : "php/submit.php",
+    		type: "POST",
+    		data : formData,
+    		success: function(data)
+    		{
+				alert(data);
+    		}, error: function(data){
+				alert("error");	
+			}
+		});
+	});
+});
+</script>
+
+<style type="text/css">
+
+</style>
+</head>
+<body>
+
+<h1>Aktualisiere dein Archiv</h1>
+<div id="tabs">
+  <ul>
+    <li><a href="#tabs-1">Nunc tincidunt</a></li>
+    <li><a href="#tabs-2">Proin dolor</a></li>
+    <li><a href="#tabs-3">Aenean lacinia</a></li>
+  </ul>
+  <div id="tabs-1">
+    <p><form action="javascript:void(0);">
+  <table border="0" cellpadding="3" cellspacing="0">
+    <tr>
+      <td align="right">Nickname:</td>
+      <td><input name="Nickname" id="filmnickname" type="text" class="Feld" size="30" maxlength="30"></td>
+    </tr>
+   
+    
+    
+    <tr>
+      <td align="right" valign="top">Art: </td>
+      <td>
+      <select id="filmart" name="Artikel" class="Auswahl" size="1">
+        <option value="Film">Film</option>
+        <option value="Doku">Doku</option>
+        <option value="Serie">Serie</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td align="right" valign="top">Name:</td>
+      <td><textarea name="Text" id="filmname" class="Bereich" rows="10" cols="50"></textarea></td>
+    </tr>
+    <tr>
+      <td align="right">Formular:</td>
+      <td>
+        <input type="submit" class="Button" id="b_submitRefresh" value="Absenden">
+        <input type="reset" class="Button" value="Abbrechen">
+      </td>
+    </tr>
+  </table>
+</form>
+</p>
+  </div>
+  <div id="tabs-2">
+
+  </div>
+  <div id="tabs-3">
+ 
+  </div>
+</div>
+
+
+
+</body>
+</html>
